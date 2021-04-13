@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>Test</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+  
+  <body>
+    <div style="width: 300px; overflow: hidden; height: 300px;">
+    <iframe id="mapFrame"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCLuUjmN_NsW75X9zbGCQbvzo7LxyZdEvI&q=-6.8971,107.6096&zoom=18"
+    width="100%" 
+     height="600"
+     frameborder="0"
+     style="border:0; margin-top: -150px;">
+  </iframe>
+</div>
+  <div id="Text"></div>
+  <script>
+    
+    var la = -6.8971;
+    var lu = 107.6096;
+    function changeFunc() {
+      la += 0.0001;
+      var mapstring = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCLuUjmN_NsW75X9zbGCQbvzo7LxyZdEvI&q=" + la + "," + lu + "&zoom=18"
+          document.getElementById("mapFrame").src = mapstring;
+        document.getElementById("Text").innerHTML = "<p>"+ la + "," + lu + "<br>" + mapstring + "</p>";
+    }
+    
+    setInterval(changeFunc, 3000);
+</script>
+  </body></html>

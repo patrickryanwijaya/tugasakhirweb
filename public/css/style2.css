@@ -1,0 +1,7 @@
+.tombol{
+    display: none;
+  }
+.tombol.aktif{
+    display: block;
+  }
+  

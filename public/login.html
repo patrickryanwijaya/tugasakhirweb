@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle Tracking System - Account</title>
+    <!-- stylesheets -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style1.css">
+  </head>
+
+  <body>
+    <!-- auth modals -->
+    <div class="auth" id="mainBody">
+      <div class="modal active">
+        <h2>Login</h2>
+        <form class="login" method="POST">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Login</button>
+          <p class="error"></p>
+        </form>
+        <div>No account? <a class="switch">Register instead</a></div>
+        <button onclick="window.location.href='/'">Back to Home</button>
+      </div>
+      <div class="modal">
+        <h2>Register</h2>
+        <form class="register" method="POST">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Register</button>
+          <p class="error"></p>
+        </form>
+        <div>Got an account? <a class="switch">Login instead</a></div>
+        <button onclick="window.location.href='/'">Back to Home</button>
+      </div>
+    </div>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="/__/firebase/8.2.5/firebase-app.js"></script>
+      <!--Include only the Firebase features as you need-->
+      <script src="/__/firebase/8.2.5/firebase-auth.js"></script> 
+      <script src="/__/firebase/8.2.5/firebase-firestore.js"></script>
+      <script src="/__/firebase/8.2.5/firebase-functions.js"></script>
+      <!-- Initialize Firebase -->
+      <script src="/__/firebase/init.js"></script>
+    <script src="js/auth.js"></script>
+    
+  </body>
+</html>

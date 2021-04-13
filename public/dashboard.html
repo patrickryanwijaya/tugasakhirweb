@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vehicle Tracking System Dashboard">
+
+  <title>Vehicle Tracking System Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="NiceAdmin/css/bootstrap.min.css" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="NiceAdmin/css/bootstrap-theme.css" rel="stylesheet">
+  <!-- font icon -->
+  <link href="NiceAdmin/css/elegant-icons-style.css" rel="stylesheet" />
+  <link href="NiceAdmin/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="NiceAdmin/css/style.css" rel="stylesheet">
+  <link href="css/style1.css" rel="stylesheet">
+  <link href="css/style2.css" rel="stylesheet">
+  <!-- =======================================================
+    Theme Name: NiceAdmin
+    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body id="bodyIdDash" onload="document.body.style.visibility='hidden';">
+  <!-- new request modal -->
+  <div class = "req-track">
+    <form class="login-form" method="POST">
+      <div class="login-wrap">
+        <div class="input-group">
+          <input type="text" name="deviceID" class="form-control" placeholder="Input Tracker ID" autofocus>
+        </div>
+        <div class="input-group">
+          <input type="text" name="devnam" class="form-control" placeholder="Input Nama Tracker" autofocus>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Add Tracker</button>
+      </div>
+    </form>
+    </div>
+  <!-- container section start -->
+  <section id="container" >
+    <header class="header dark-bg">
+      <div class="toggle-nav">
+        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+      </div>
+
+      <!--logo start-->
+      <a href="dashboard.html" class="logo">Tracking System <span class="lite">TA202101017</span></a>
+      <!--logo end-->
+
+      <div class="top-nav notification-row">
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="NiceAdmin/img/user.jpg">
+                            </span>
+                            <span class="username"></span>
+                            <b class="caret"></b>
+                        </a>
+            <ul class="dropdown-menu extended logout">
+              <div class="log-arrow-up"></div>
+              <li class="eborder-top">
+                <a href="#" class ="add-track"> Add Tracker</a>
+              </li>
+              <li>
+                <a href="#" class = "logout2"><i class="icon_profile"></i> logout</a>
+              </li>
+            </ul>
+          </li>
+          <!-- user login dropdown end -->
+        </ul>
+        <!-- notificatoin dropdown end-->
+      </div>
+    </header>
+    <!--header end-->
+
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a class="" href="dashboard.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Home</span>
+                      </a>
+          </li>
+          <li>
+            <a class="" href="NiceAdmin/widgets.html">
+                          <i class="icon_clock_alt"></i>
+                          <span>Historical Data</span>
+                      </a>
+          </li>
+          <li>
+            <a href="#" class="add-track" >
+                          <i class="icon_key_alt"></i>
+                          <span>Add Tracker</span>
+
+                      </a>
+
+          </li>
+
+          <li class="sub-menu" >
+            <a href="javascript:;" class="">
+                          <i class="icon_pin"></i>
+                          <span>Tracker List</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="tracklist">
+              <li v-for="tracker in trackers"><a class="pilihTrack" href="#" v-on:click="displayData(tracker.name,tracker.id)">{{ tracker.name }}</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <!--overview start-->
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-map-marker"></i> </h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i><a href="dashboard.html">Home</a></li>
+              <li class = "markerTrack"><i class="fa fa-map-marker"></i>No Tracker Selected</li>
+            </ol>
+          </div>
+        </div>
+        <!--/.row-->
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><i class="fa fa-map-marker red"></i><strong>Real time Data</strong></h2>
+                <div class="panel-actions">
+                  <a href="dashboard.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                  <a href="dashboard.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="dashboard.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                </div>
+              </div>
+              <div class="panel-body-map">
+                <div id="map" style="height:380px;width:100%;"></div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="panel panel-body" >
+                <button type="button" class="btn btn-primary btn-lg btn-block tombol starting">Start Realtime Tracking</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block tombol ending">End Realtime Tracking</button>
+              </div>
+            </div>
+          <div class="col-md-3">
+      </section>
+      <div class="text-right">
+        <div class="credits">
+          <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+          -->
+          Designed by <a href="https://bootstrapmade.com/">TA202101017</a>
+        </div>
+      </div>
+    </section>
+    <!--main content end-->
+  </section>
+  <!-- Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <!-- javascripts -->
+  <script src="NiceAdmin/js/jquery.js"></script>
+  <!-- bootstrap -->
+  <script src="NiceAdmin/js/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="NiceAdmin/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!--custome script for all page-->
+    <script src="NiceAdmin/js/scripts.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.2.5/firebase-app.js"></script>
+    <!--Include only the Firebase features as you need-->
+    <script src="/__/firebase/8.2.5/firebase-auth.js"></script>
+    <script src="/__/firebase/8.2.5/firebase-firestore.js"></script>
+    <script src="/__/firebase/8.2.5/firebase-functions.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script src="js/auth2.js"></script>
+    <!-- Maps Javascript API -->
+    <script async
+    src="">
+    </script>
+
+
+</body>
+
+</html>
